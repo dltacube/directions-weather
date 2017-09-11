@@ -1,9 +1,3 @@
-var directionsDisplay;
-var directionsService;
-var results;
-var map;
-var weatherCoords = {};
-
 function initMap() {
     directionsDisplay = new google.maps.DirectionsRenderer;
     directionsService = new google.maps.DirectionsService;
@@ -36,8 +30,8 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, _callbac
     }, function (response, status) {
         if (status === 'OK') {
             // global var for debugging
-            results = response;
             directionsDisplay.setDirections(response);
+            currentRoute.result = response;
         } else {
             window.alert('Directions request failed due to ' + status);
         }
