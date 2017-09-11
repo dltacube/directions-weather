@@ -48,20 +48,24 @@ addWeatherRows = function () {
         // this way the rows are properly added
         $('table.adp-directions>tbody>tr').after(function (index, html) {
             if (index == step) {
-                return('<tr><td>THUNDAR!</td></tr>')
+                return ('<tr><td>THUNDAR!</td></tr>')
             }
         });
     }
 };
 
 $(document).ready(function () {
+    console.log("document is ready.")
     // console.log(document.getElementById('right-panel'));
     var addRowsMut = new MutationObserver(function (mutation) {
+        console.log("mutation observer callback function()");
         pickfivepoints();
         // console.log("Adding rows w/ weather");
         addWeatherRows();
     });
-    //the config isn't optional.
-    var config = { attributes: true, childList: true, characterData: true }
-    addRowsMut.observe(document.getElementById('right-panel'), config);
+    addRowsMut.observe(document.getElementById('right-panel'), {
+        attributes: true,
+        childList: true,
+        characterData: true
+    });
 });

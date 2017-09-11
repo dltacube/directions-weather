@@ -24,9 +24,6 @@ function initMap() {
     document.getElementById('start').addEventListener('change', onChangeHandler);
     document.getElementById('end').addEventListener('change', onChangeHandler);
 
-    // google.maps.event.addListener(directionsDisplay, 'directions_changed', function () {
-    //     pickfivepoints();
-    // });
 }
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay, _callback) {
@@ -38,6 +35,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, _callbac
         travelMode: 'DRIVING'
     }, function (response, status) {
         if (status === 'OK') {
+            // global var for debugging
             results = response;
             directionsDisplay.setDirections(response);
         } else {
@@ -45,13 +43,3 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, _callbac
         }
     });
 }
-
-
-// $(function () {
-//     document.getElementById('right-panel').addEventListener('DOMSubtreeModified', addWeatherRows)
-//     document.getElementById('right-panel').addEventListener('DOMSubtreeModified', function () {
-//         console.log("EVENT FIRED!")
-//     })
-// });
-
-// ko.applyBindings(new cacheViewModel());
