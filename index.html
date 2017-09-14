@@ -49,18 +49,29 @@
         <option value="san bernardino, ca">San Bernardino</option>
         <option value="los angeles, ca">Los Angeles</option>
     </select>
-    <br><button id="addWeather">add weather</button>
+    <br>
+    <button id="addWeather">add weather</button>
 </div>
 
 <div id="right-panel"></div>
 <div id="map"></div>
 <button onclick="getWeatherDarkSyk()">Get Weather from DarkSky!</button>
 <button onclick="getWeatherOpenWeatherMap()">Use XMLHttpRequest!</button>
-
+<table>
+    <thead>
+    <tr><td>latitude</td><td>longitude</td></tr>
+    </thead>
+    <tbody data-bind="foreach: dsWeather">
+    <tr>
+        <td data-bind="text: lat"></td>
+        <td data-bind="text: lng"></td>
+    </tr>
+    </tbody>
+</table>
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbY7OuCHAoEuAQy2P814Vu2oBQdDG7xAs&callback=initMap">
 </script>
-<!--<script src="js/lib/knockout-3.2.0.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
 
 </body>
 </html>

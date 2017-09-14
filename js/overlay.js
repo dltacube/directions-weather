@@ -19,5 +19,6 @@ function ShowWeatherMarkers() {
 
         marker.setMap(map);
         markerArray.push(marker);
-    }
+    };
+
 }

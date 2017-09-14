@@ -1,5 +1,3 @@
-var dsWeather;
-
 var getWeatherDarkSyk = function () {
     console.log("fetching weather from dark sky");
     var key = 'a214b166daec400f159accdddb580373';
@@ -11,14 +9,15 @@ var getWeatherDarkSyk = function () {
     $.ajax(qUrl, {
         dataType: 'jsonp',
         success: function (data) {
-            console.log(data);
+            dsWeather.push(data);
         }
     });
 };
 
+
 var getWeatherOpenWeatherMap = function () {
     var invocation = new XMLHttpRequest()
-    var url = 'https://api.darksky.net/forecast/a214b166daec400f159accdddb580373/41.87811000000001,-87.62979000000001';
+    var url = 'https://api.darksky.net/forecast/a214b166daec400f159accdddb580373/41.87811000000001,-87.62979000000001?cb=lol';
 
     function handler(data) {
         console.log(data)

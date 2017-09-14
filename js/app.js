@@ -1,4 +1,20 @@
-pickfivepoints = function () {
+var app = function () {
+    var self = this;
+
+    self.dsWeather = ko.observableArray([{
+        lat: map.center.lat(),
+        lng: map.center.lng()
+    }]);
+
+    self.route = ko.observable();
+
+    self.updateCoordinates = function (response) {
+        self.route = response;
+        pickfivepoints(self.route);
+    }
+}
+
+pickfivepoints = function (response) {
     // console.log("picking 5 equidistant points on route");
     currentRoute.weatherCoords = {};
     var polyDots = currentRoute.result.routes[0].overview_path.length;
