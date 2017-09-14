@@ -8,7 +8,11 @@ var getWeatherDarkSyk = function () {
     var firstPoint = currentRoute.weatherCoords[0];
     var qUrl = baseUrl + firstPoint.lat + ',' + firstPoint.lng;
     console.log(qUrl);
-    $.ajax(qUrl);
+    $.ajax(qUrl, {
+        success: function (data) {
+            console.log(data);
+        }
+    });
 };
 
 var getWeatherOpenWeatherMap = function () {
