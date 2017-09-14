@@ -32,6 +32,7 @@ var getWeatherOpenWeatherMap = function () {
         }
     };
 
+    callOtherDomain();
 
 }
 
