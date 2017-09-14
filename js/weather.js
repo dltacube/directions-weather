@@ -3,10 +3,12 @@ var dsWeather;
 var getWeatherDarkSyk = function () {
     console.log("fetching weather from dark sky");
     var key = 'a214b166daec400f159accdddb580373';
-    var baseUrl = 'https://api.darksky.net/forecast/';
+    var baseUrl = 'https://api.darksky.net/forecast/' + key + '/';
 
-    var firstPoint = weatherCoords[0];
-    console.log(baseUrl + key + '/' + firstPoint.lat + ',' + firstPoint.lng);
+    var firstPoint = currentRoute.weatherCoords[0];
+    var qUrl = baseUrl + firstPoint.lat + ',' + firstPoint.lng;
+    console.log(qUrl);
+    $.ajax(qUrl);
 };
 
 var getWeatherOpenWeatherMap = function () {

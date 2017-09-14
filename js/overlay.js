@@ -10,15 +10,14 @@ function ShowWeatherMarkers() {
         var marker = new google.maps.Marker;
         marker.setPosition(myLatLng);
 
-        var infowindow = new google.maps.InfoWindow({maps: map, content: 'THUNDAR!', position: myLatLng})
-        marker.addListener('click', function () {
-            console.log('marker has been clicked');
-            infowindow.open(map, marker);
-        });
+        var infowindow = new google.maps.InfoWindow({maps: map, content: 'THUNDAR!', position: myLatLng});
+        marker.addListener('click', (function (infowindowCopy, markerCopy) {
+            return function () {
+                infowindowCopy.open(map, markerCopy);
+            }
+        })(infowindow, marker));
 
         marker.setMap(map);
         markerArray.push(marker);
     }
-
-
 }
