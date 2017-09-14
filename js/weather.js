@@ -9,6 +9,7 @@ var getWeatherDarkSyk = function () {
     var qUrl = baseUrl + firstPoint.lat + ',' + firstPoint.lng;
     console.log(qUrl);
     $.ajax(qUrl, {
+        dataType: 'jsonp',
         success: function (data) {
             console.log(data);
         }
