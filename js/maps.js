@@ -17,7 +17,7 @@ function initMap() {
     };
     document.getElementById('start').addEventListener('change', onChangeHandler);
     document.getElementById('end').addEventListener('change', onChangeHandler);
-    
+
     viewModel = new app();
     ko.applyBindings(viewModel);
 }
@@ -33,7 +33,8 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, _callbac
         if (status === 'OK') {
             // global var for debugging
             directionsDisplay.setDirections(response);
-            viewModel.updateCoordinates(response);
+            viewModel.route(response);
+            // viewModel.updateCoordinates(response);
         } else {
             window.alert('Directions request failed due to ' + status);
         }

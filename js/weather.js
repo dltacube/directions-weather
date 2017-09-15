@@ -1,15 +1,59 @@
-var getWeatherDarkSyk = function () {
+function ShowWeatherMarkers(waypoints, markers) {
+    console.log('inside showweathermarkers()');
+    // clear current markers if any
+    for (marker of markers) {
+        marker.marker.setVisible(false);
+    }
+    for (pathStep in waypoints()) {
+        var myLatLng = waypoints()[pathStep].latlng;
+        var marker = new google.maps.Marker;
+        marker.setPosition(myLatLng);
+
+        var infowindow = new google.maps.InfoWindow({maps: map, content: 'THUNDAR!', position: myLatLng});
+        marker.addListener('click', (function (infowindowCopy, markerCopy) {
+            return function () {
+                infowindowCopy.open(map, markerCopy);
+            }
+        })(infowindow, marker));
+
+        marker.setMap(map);
+        markers.push({
+            marker: marker,
+            infoWindow: infowindow
+        });
+    };
+}
+
+var getWeatherDarkSky = function (viewModel) {
     console.log("fetching weather from dark sky");
     var key = 'a214b166daec400f159accdddb580373';
     var baseUrl = 'https://api.darksky.net/forecast/' + key + '/';
 
-    var firstPoint = currentRoute.weatherCoords[0];
+    var firstPoint = viewModel.waypoints()[0];
     var qUrl = baseUrl + firstPoint.lat + ',' + firstPoint.lng;
     console.log(qUrl);
+    var result;
     $.ajax(qUrl, {
         dataType: 'jsonp',
         success: function (data) {
-            dsWeather.push(data);
+            result = data;
+            viewModel.markers[0].marker.setVisible(false);
+            myLatLng = {
+                lat: viewModel.markers[0].marker.position.lat(),
+                lng: viewModel.markers[0].marker.position.lng()
+            };
+            var infoWindow = new google.maps.InfoWindow({
+                map: map,
+                content: result.currently.summary,
+                position: myLatLng});
+            viewModel.markers[0].infoWindow = infoWindow;
+            var marker = viewModel.markers[0].marker = new google.maps.Marker;
+            marker.setPosition(myLatLng);
+            marker.addListener('click', function (infoWindow, marker) {
+                infoWindow.open(map, marker);
+            })
+            // var newInfo = new google.maps.InfoWindow({content: result.currently.summary});
+            // newInfo.open(map, viewModel.markers[0])
         }
     });
 };
