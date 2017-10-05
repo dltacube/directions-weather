@@ -7,6 +7,7 @@
             crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/maps.js"></script>
     <script type="text/javascript" src="js/weatherdata.js"></script>
+    <script type="text/javascript" src="http://darkskyapp.github.io/skycons/skycons.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
@@ -45,14 +46,10 @@
         <option value="san bernardino, ca">San Bernardino</option>
         <option value="los angeles, ca">Los Angeles</option>
     </select>
-    <br>
-    <button id="addWeather">add weather</button>
 </div>
 
 <div id="right-panel"></div>
 <div id="map"></div>
-<button onclick="getWeatherDarkSky()">Get Weather from DarkSky!</button>
-<button onclick="getWeatherOpenWeatherMap()">Use XMLHttpRequest!</button>
 <!--<div data-bind="text: route().request.destination.query"></div>-->
 <div data-bind="text: waypoints().length"></div>
 
